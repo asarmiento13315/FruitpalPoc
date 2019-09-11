@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using FruitpalLib;
-using FruitpalLib.Domain;
 using Fruitpal.DataAccess;
 
 namespace Fruitpal

@@ -16,7 +16,7 @@ namespace Fruitpal.DataAccess {
     public override double VariableOverhead {get; set;}
   }
 
-  class JsonMarketOverheadProvider: IMarketOverheadProvider {
+  public class JsonMarketOverheadProvider: IMarketOverheadProvider {
     private readonly string jsonFilename;
 
     public JsonMarketOverheadProvider(string jsonFilename) {
@@ -26,7 +26,13 @@ namespace Fruitpal.DataAccess {
     }
 
     public IEnumerable<IMarketOverhead> LoadData() {
-      return JsonConvert.DeserializeObject<List<JsonMarketOverhead>>(File.ReadAllText(jsonFilename));
+      var empty = new IMarketOverhead[] {};
+      try {
+        var json = File.ReadAllText(jsonFilename);
+        return JsonConvert.DeserializeObject<JsonMarketOverhead[]>(json) ?? empty;
+      } catch {
+        return empty;
+      }
     }
   }
 }

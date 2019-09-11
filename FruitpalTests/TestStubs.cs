@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using FruitpalLib.Domain;
 
 namespace FruitpalTests 
@@ -23,6 +23,15 @@ namespace FruitpalTests
           Country = s.country, Commodity = s.commodity, FixedOverhead = s.fixedOverhead, VariableOverhead = s.varOverhead 
         });
     }
+  }
+
+  class Utils {
+    public static void AssertMarketOverheadDataAreEqual(IMarketOverhead x, IMarketOverhead y) {
+        Assert.AreEqual(x.Country, y.Country);
+        Assert.AreEqual(x.Commodity, y.Commodity);
+        Assert.AreEqual(x.FixedOverhead, y.FixedOverhead);
+        Assert.AreEqual(x.VariableOverhead, y.VariableOverhead);
+    }  
   }
 
 }
